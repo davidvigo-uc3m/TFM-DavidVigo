@@ -11,8 +11,8 @@ Servicio SOAP piloto desarrollado para validar una metodología de modernizació
 - Fichero de configuración pom.xml con dependencias necesarias.
 
 
----
 
-## 📬 Contact
+
+## 📬 Contacto
 
 Para dudas o colaboraciones, contactar con el autor David Vigo via LinkedIn: [David Vigo](https://www.linkedin.com/in/davidvigob/) 
