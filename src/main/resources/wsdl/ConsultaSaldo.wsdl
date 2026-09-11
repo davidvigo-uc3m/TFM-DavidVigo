@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://www.uc3m.es/tfm/consultasaldo"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  name="ConsultaSaldoService"
+                  targetNamespace="http://www.uc3m.es/tfm/consultasaldo">
+
+    <wsdl:types>
+        <!-- Importa el esquema XSD que se acaba de crear -->
+        <xsd:schema>
+            <xsd:import namespace="http://www.uc3m.es/tfm/consultasaldo" schemaLocation="ConsultaSaldo.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <!-- Mensajes SOAP -->
+    <wsdl:message name="ConsultaSaldoRequestMessage">
+        <wsdl:part name="parameters" element="tns:ConsultaSaldoRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ConsultaSaldoResponseMessage">
+        <wsdl:part name="parameters" element="tns:ConsultaSaldoResponse"/>
+    </wsdl:message>
+
+    <!-- Definicio de puertos y operaciones a realizar -->
+    <wsdl:portType name="ConsultaSaldoPortType">
+        <wsdl:operation name="consultar">
+            <wsdl:input message="tns:ConsultaSaldoRequestMessage"/>
+            <wsdl:output message="tns:ConsultaSaldoResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- Protocolo de comunicación SOAP -->
+    <wsdl:binding name="ConsultaSaldoSoapBinding" type="tns:ConsultaSaldoPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="consultar">
+            <soap:operation soapAction="http://www.uc3m.es/tfm/consultasaldo/consultar"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!-- Dónde estará alojado físicamente el servicio en local posteriormente -->
+    <wsdl:service name="ConsultaSaldoService">
+        <wsdl:port name="ConsultaSaldoPort" binding="tns:ConsultaSaldoSoapBinding">
+            <soap:address location="http://localhost:8080/servicios/ConsultaSaldoService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
